@@ -8,6 +8,13 @@ public class Parantheses
 
     public boolean isValid(String s)
     {
+        if (s.length() == 1)
+        {
+            return false;
+        } else if (s.isEmpty())
+        {
+            return true;
+        }
         Stack<String> paranStack = new Stack<>();
         boolean isValidParan = true;
         for (int i = 0; i < s.length() && isValidParan; i++)
@@ -32,7 +39,15 @@ public class Parantheses
                 isValidParan = false;
             }
         }
-        return isValidParan;
+
+        if(paranStack.isEmpty() && isValidParan)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public boolean validParanHelper(String rightParan, String leftParan)
@@ -45,19 +60,34 @@ public class Parantheses
                 {
                     return true;
                 }
+                break;
             case "]":
                 if (leftParan.equals("["))
                 {
                     return true;
                 }
+                break;
             case ")":
                 if (leftParan.equals("("))
                 {
                     return true;
                 }
+                break;
             default:
                 return false;
+
         }
+        return false;
+    }
+}
+
+class ParanTest
+{
+    public static void main(String[] aregsg)
+    {
+        Parantheses paran = new Parantheses();
+
+        boolean rawrs = paran.isValid("((");
     }
 
 }
